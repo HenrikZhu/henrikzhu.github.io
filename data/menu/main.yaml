@@ -1,0 +1,5 @@
+---
+main:
+  - name: self-discipline
+    ref: "/posts/how-to-build-self-discipline.md"
+    icon: "gdoc_menu"

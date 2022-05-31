@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  class="color-toggle-hidden"
+  
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=443&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8" />
+<meta name="referrer" content="no-referrer" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light dark" />
+<meta name="generator" content="Hugo 0.111.3">
+
+
+  <meta name="description" content="打包 前端 前端源代码在 webapp/ 目录中；davinci-ui/ 目录为编译后的前端文件
+npm run build 后端 用户配置在项目根目录 /config/ 下，项目启动脚本和升级补丁脚本在项目根目录 /bin/ 下， 后端代码及核心配置在 server/ 目录下, 日志在项目根目录 /log/ 下。注意：此处所指项目根目录都指环境变量 DAVINCI3_HOME 所配置的目录，在使用 IDE 开发过程中也需要配置环境变量，如 Idea 关于环境变量加载的优先级：Run/Debug Configurations 中配置的 Environment variables —&gt; IDE缓存的系统环境变量。
+打完整 release 包需要修改根目录下 /assembly/src/main/assembly/assembly.xml 中相关版本信息，然后在根目录下执行: mvn clean package 即可； 打 server 包可直接在 server/ 目录下执行 mvn clean package。 1 环境准备 JDK 1.8（或更高版本） MySql5.5（或更高版本） 2 配置部署 2.1 初始化目录 将下载好的 Davinci 包（Release 包，不是 Source 包）解压到某个系统目录，如：~/app/davinci
+cd ~/app/davinci unzip davinci-assembly_3.0.1-0.3.0-SNAPSHOT-dist.zip 解压后目录结构如下图所示：" />
+
+    <title>Davinci | docs</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon/favicon-16x16.png"
+/>
+
+    
+
+    
+  <meta
+    property="og:title"
+    content="Davinci"
+  />
+  <meta property="og:site_name" content="docs" />
+  <meta property="og:description" content="打包 前端 前端源代码在 webapp/ 目录中；davinci-ui/ 目录为编译后的前端文件
+npm run build 后端 用户配置在项目根目录 /config/ 下，项目启动脚本和升级补丁脚本在项目根目录 /bin/ 下， 后端代码及核心配置在 server/ 目录下, 日志在项目根目录 /log/ 下。注意：此处所指项目根目录都指环境变量 DAVINCI3_HOME 所配置的目录，在使用 IDE 开发过程中也需要配置环境变量，如 Idea 关于环境变量加载的优先级：Run/Debug Configurations 中配置的 Environment variables —&gt; IDE缓存的系统环境变量。
+打完整 release 包需要修改根目录下 /assembly/src/main/assembly/assembly.xml 中相关版本信息，然后在根目录下执行: mvn clean package 即可； 打 server 包可直接在 server/ 目录下执行 mvn clean package。 1 环境准备 JDK 1.8（或更高版本） MySql5.5（或更高版本） 2 配置部署 2.1 初始化目录 将下载好的 Davinci 包（Release 包，不是 Source 包）解压到某个系统目录，如：~/app/davinci
+cd ~/app/davinci unzip davinci-assembly_3.0.1-0.3.0-SNAPSHOT-dist.zip 解压后目录结构如下图所示：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://henrikzhu.github.io:443/posts/Davinci/" />
+
+<meta property="article:section" content="Posts" />
+    <meta
+      property="article:published_time"
+      content="2020-01-05T08:24:45+08:00"
+    />
+    <meta
+      property="article:modified_time"
+      content="2022-06-01T07:10:22+08:00"
+    />
+
+
+  <meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Davinci" />
+  <meta name="twitter:description" content="打包 前端 前端源代码在 webapp/ 目录中；davinci-ui/ 目录为编译后的前端文件
+npm run build 后端 用户配置在项目根目录 /config/ 下，项目启动脚本和升级补丁脚本在项目根目录 /bin/ 下， 后端代码及核心配置在 server/ 目录下, 日志在项目根目录 /log/ 下。注意：此处所指项目根目录都指环境变量 DAVINCI3_HOME 所配置的目录，在使用 IDE 开发过程中也需要配置环境变量，如 Idea 关于环境变量加载的优先级：Run/Debug Configurations 中配置的 Environment variables —&gt; IDE缓存的系统环境变量。
+打完整 release 包需要修改根目录下 /assembly/src/main/assembly/assembly.xml 中相关版本信息，然后在根目录下执行: mvn clean package 即可； 打 server 包可直接在 server/ 目录下执行 mvn clean package。 1 环境准备 JDK 1.8（或更高版本） MySql5.5（或更高版本） 2 配置部署 2.1 初始化目录 将下载好的 Davinci 包（Release 包，不是 Source 包）解压到某个系统目录，如：~/app/davinci
+cd ~/app/davinci unzip davinci-assembly_3.0.1-0.3.0-SNAPSHOT-dist.zip 解压后目录结构如下图所示：" />
+
+
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "TechArticle",
+      "articleSection": "Posts",
+      "name": "Davinci",
+      "url" : "https://henrikzhu.github.io:443/posts/Davinci/",
+      "headline": "Davinci",
+      "description": "打包 前端 前端源代码在 webapp\/ 目录中；davinci-ui\/ 目录为编译后的前端文件\nnpm run build 后端 用户配置在项目根目录 \/config\/ 下，项目启动脚本和升级补丁脚本在项目根目录 \/bin\/ 下， 后端代码及核心配置在 server\/ 目录下, 日志在项目根目录 \/log\/ 下。注意：此处所指项目根目录都指环境变量 DAVINCI3_HOME 所配置的目录，在使用 IDE 开发过程中也需要配置环境变量，如 Idea 关于环境变量加载的优先级：Run\/Debug Configurations 中配置的 Environment variables —\u003e IDE缓存的系统环境变量。\n打完整 release 包需要修改根目录下 \/assembly\/src\/main\/assembly\/assembly.xml 中相关版本信息，然后在根目录下执行: mvn clean package 即可； 打 server 包可直接在 server\/ 目录下执行 mvn clean package。 1 环境准备 JDK 1.8（或更高版本） MySql5.5（或更高版本） 2 配置部署 2.1 初始化目录 将下载好的 Davinci 包（Release 包，不是 Source 包）解压到某个系统目录，如：~\/app\/davinci\ncd ~\/app\/davinci unzip davinci-assembly_3.0.1-0.3.0-SNAPSHOT-dist.zip 解压后目录结构如下图所示：",
+      "wordCount" : "198",
+      "inLanguage": "en",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://henrikzhu.github.io:443/posts/Davinci/"
+      },
+      "copyrightHolder" : "docs",
+      "copyrightYear" : "2020",
+      "dateCreated": "2020-01-05T08:24:45.00Z",
+      "datePublished": "2020-01-05T08:24:45.00Z",
+      "dateModified": "2022-06-01T07:10:22.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "docs",
+          "url": "https://henrikzhu.github.io:443/",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "https://henrikzhu.github.io:443/brand.svg",
+              "width":"32",
+              "height":"32"
+          }
+      }
+  }
+  </script>
+
+
+    
+  <script src="/js/colortheme-d3e4d351.bundle.min.js"></script>
+<script src="/js/main-fbb9c8b0.bundle.min.js"></script>
+
+<link
+  rel="preload"
+  as="font"
+  href="/fonts/Metropolis.woff2"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
+<link
+  rel="preload"
+  as="font"
+  href="/fonts/LiberationSans.woff2"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  href="/main-f44405f3.min.css"
+  as="style"
+/>
+<link
+  rel="stylesheet"
+  href="/main-f44405f3.min.css"
+  media="all"
+/>
+
+<link
+  rel="preload"
+  href="/mobile-79ddc617.min.css"
+  as="style"
+/>
+<link
+  rel="stylesheet"
+  href="/mobile-79ddc617.min.css"
+  media="screen and (max-width: 45rem)"
+/>
+
+<link
+  rel="preload"
+  href="/print-735ccc12.min.css"
+  as="style"
+/>
+<link
+  rel="stylesheet"
+  href="/print-735ccc12.min.css"
+  media="print"
+/>
+
+<link
+  rel="preload"
+  href="/custom.css"
+  as="style"
+/>
+<link
+  rel="stylesheet"
+  href="/custom.css"
+  media="all"
+/>
+  <link href="https://henrikzhu.github.io:443/posts/Davinci/" rel="canonical" type="text/html" />
+
+<!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
+
+    
+
+  </head>
+
+  <body itemscope itemtype="https://schema.org/WebPage">
+    
+  <!-- geekdoc include: sprites/geekdoc.svg -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs></defs></svg>
+
+
+
+
+    <div
+      class="wrapper "
+    >
+      <input type="checkbox" class="hidden" id="menu-control" />
+      <input type="checkbox" class="hidden" id="menu-header-control" />
+      
+      <header class="gdoc-header">
+  <div class="container flex align-center justify-between">
+    
+      <label for="menu-control" class="gdoc-nav__control" tabindex="0">
+        <svg class="gdoc-icon gdoc_menu">
+          <title>Open Navigation</title>
+          <use xlink:href="#gdoc_menu"></use>
+        </svg>
+        <svg class="gdoc-icon gdoc_arrow_back">
+          <title>Close Navigation</title>
+          <use xlink:href="#gdoc_arrow_back"></use>
+        </svg>
+      </label>
+    
+    <div>
+      <a class="gdoc-brand gdoc-header__link" href="https://henrikzhu.github.io:443/">
+        <span class="flex align-center">
+          <img
+            class="gdoc-brand__img"
+            src="/brand.svg"
+            alt=""
+          />
+          <span class="gdoc-brand__title">docs</span>
+        </span>
+      </a>
+    </div>
+    <div class="gdoc-menu-header">
+      <span class="gdoc-menu-header__items">
+        
+
+
+        <span id="gdoc-color-theme">
+          <svg class="gdoc-icon gdoc_brightness_dark">
+            <title>Toggle Dark/Light/Auto mode</title>
+            <use xlink:href="#gdoc_brightness_dark"></use>
+          </svg>
+          <svg class="gdoc-icon gdoc_brightness_light">
+            <title>Toggle Dark/Light/Auto mode</title>
+            <use xlink:href="#gdoc_brightness_light"></use>
+          </svg>
+          <svg class="gdoc-icon gdoc_brightness_auto">
+            <title>Toggle Dark/Light/Auto mode</title>
+            <use xlink:href="#gdoc_brightness_auto"></use>
+          </svg>
+        </span>
+
+        <span class="gdoc-menu-header__home">
+          <a href="https://henrikzhu.github.io:443/" class="gdoc-header__link">
+            <svg class="gdoc-icon gdoc_home">
+              <title>Back to homepage</title>
+              <use xlink:href="#gdoc_home"></use>
+            </svg>
+          </a>
+        </span>
+
+        
+
+
+
+        <span class="gdoc-menu-header__control">
+          <label for="menu-header-control">
+            <svg class="gdoc-icon gdoc_keyboard_arrow_right">
+              <use xlink:href="#gdoc_keyboard_arrow_right"></use>
+              <title>Close Menu Bar</title>
+            </svg>
+          </label>
+        </span>
+      </span>
+      <label for="menu-header-control" class="gdoc-menu-header__control">
+        <svg class="gdoc-icon gdoc_keyboard_arrow_left">
+          <use xlink:href="#gdoc_keyboard_arrow_left"></use>
+          <title>Open Menu Bar</title>
+        </svg>
+      </label>
+    </div>
+  </div>
+</header>
+
+
+
+      <main class="container flex flex-even">
+        
+          <aside class="gdoc-nav">
+            <nav>
+  
+
+
+
+  <section class="gdoc-nav--main">
+    <h2>Navigation</h2>
+    
+      
+
+  
+  
+
+
+  <ul class="gdoc-nav__list">
+    
+      
+      
+
+
+      <li>
+        
+        
+          
+          
+          
+          
+          
+          
+          
+
+          
+          
+
+          
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              <span class="flex">
+                
+                  <svg class="gdoc-icon gdoc_menu"><use xlink:href="#gdoc_menu"></use></svg>
+                
+                <a
+                  href="/posts/how-to-build-self-discipline"
+                  class="gdoc-nav__entry"
+                >
+                  self-discipline
+                </a>
+              </span>
+              
+            </label>
+          
+        
+
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+
+    
+  </section>
+
+  
+
+
+  <section class="gdoc-nav--more">
+    
+      <h2>More</h2>
+      
+
+  
+  
+
+
+  <ul class="gdoc-nav__list">
+    
+      
+      
+
+
+      <li>
+        
+        
+          
+          
+          
+          
+          
+          
+          
+
+          
+          
+
+          
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              <span class="flex">
+                
+                  <svg class="gdoc-icon gdoc_notification"><use xlink:href="#gdoc_notification"></use></svg>
+                
+                <a
+                  href="/posts"
+                  class="gdoc-nav__entry"
+                >
+                  News
+                </a>
+              </span>
+              
+            </label>
+          
+        
+
+        
+      </li>
+    
+      
+      
+
+
+      <li>
+        
+        
+          
+          
+          
+          
+          
+          
+          
+
+          
+          
+
+          
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              <span class="flex">
+                
+                  <svg class="gdoc-icon gdoc_download"><use xlink:href="#gdoc_download"></use></svg>
+                
+                <a
+                  href="
+                    https://github.com/HenrikZhu/henrikzhu.github.io/releases"
+                  class="gdoc-nav__entry"
+                >
+                  Releases
+                </a>
+              </span>
+              
+            </label>
+          
+        
+
+        
+      </li>
+    
+      
+      
+
+
+      <li>
+        
+        
+          
+          
+          
+          
+          
+          
+          
+
+          
+          
+
+          
+            <input
+              type="checkbox"
+              
+                class="hidden"
+              
+            />
+            <label
+              
+            >
+              <span class="flex">
+                
+                  <svg class="gdoc-icon gdoc_github"><use xlink:href="#gdoc_github"></use></svg>
+                
+                <a
+                  href="
+                    https://github.com/HenrikZhu/henrikzhu.github.io"
+                  class="gdoc-nav__entry"
+                >
+                  View Source
+                </a>
+              </span>
+              
+            </label>
+          
+        
+
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+
+    
+  </section>
+</nav>
+
+          </aside>
+        
+
+
+        <div class="gdoc-page">
+          
+  <article class="gdoc-post">
+    <header class="gdoc-post__header">
+      <h1 class="gdoc-post__title">Davinci</h1>
+      <div class="flex flex-wrap align-center gdoc-post__meta gdoc-post__meta--head">
+        <span class="flex align-center no-wrap">
+  <svg class="gdoc-icon gdoc_date"><use xlink:href="#gdoc_date"></use></svg>
+  <span class="gdoc-post__tag">
+    <time datetime="2022-06-01T07:10:22&#43;08:00">
+      
+        Updated on
+      
+      Jun 1, 2022
+    </time>
+  </span>
+</span>
+
+<span class="flex align-center no-wrap">
+  <svg class="gdoc-icon gdoc_timer"><use xlink:href="#gdoc_timer"></use></svg>
+  <span class="gdoc-post__tag">One minute to read</span>
+</span>
+
+
+
+
+
+
+      </div>
+    </header>
+    <section class="gdoc-markdown">
+      <div class="gdoc-page__anchorwrap">
+    <h2 id="打包">
+        打包
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#打包" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 打包" aria-label="Anchor to: 打包" href="#%e6%89%93%e5%8c%85">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h4 id="前端">
+        前端
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#前端" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 前端" aria-label="Anchor to: 前端" href="#%e5%89%8d%e7%ab%af">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>前端源代码在 webapp/ 目录中；davinci-ui/ 目录为编译后的前端文件</p>
+<pre tabindex="0"><code>npm run build
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h4 id="后端">
+        后端
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#后端" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 后端" aria-label="Anchor to: 后端" href="#%e5%90%8e%e7%ab%af">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div>
+<p>用户配置在项目根目录 /config/ 下，项目启动脚本和升级补丁脚本在项目根目录 /bin/ 下， 后端代码及核心配置在 server/ 目录下, 日志在项目根目录 /log/ 下。注意：此处所指项目根目录都指环境变量 DAVINCI3_HOME 所配置的目录，在使用 IDE 开发过程中也需要配置环境变量，如 Idea 关于环境变量加载的优先级：<code>Run/Debug Configurations</code> 中配置的 <code>Environment variables</code> —&gt;  IDE缓存的系统环境变量。</p>
+<ol>
+<li>打完整 release 包需要修改根目录下 /assembly/src/main/assembly/assembly.xml 中相关版本信息，然后在根目录下执行: <code>mvn clean package</code> 即可；</li>
+<li>打 server 包可直接在 server/ 目录下执行 <code>mvn clean package</code>。</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="1-环境准备">
+        1 环境准备
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#1-环境准备" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 1 环境准备" aria-label="Anchor to: 1 环境准备" href="#1-%e7%8e%af%e5%a2%83%e5%87%86%e5%a4%87">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<ul>
+<li>JDK 1.8（或更高版本）</li>
+<li>MySql5.5（或更高版本）</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="2-配置部署">
+        2 配置部署
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#2-配置部署" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 2 配置部署" aria-label="Anchor to: 2 配置部署" href="#2-%e9%85%8d%e7%bd%ae%e9%83%a8%e7%bd%b2">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="21-初始化目录">
+        2.1 初始化目录
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#21-初始化目录" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 2.1 初始化目录" aria-label="Anchor to: 2.1 初始化目录" href="#21-%e5%88%9d%e5%a7%8b%e5%8c%96%e7%9b%ae%e5%bd%95">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>将下载好的 Davinci 包（Release 包，不是 Source 包）解压到某个系统目录，如：~/app/davinci</p>
+<pre tabindex="0"><code>cd ~/app/davinci
+unzip davinci-assembly_3.0.1-0.3.0-SNAPSHOT-dist.zip
+</code></pre><p>解压后目录结构如下图所示：</p>
+<p><img
+  src="https://edp963.github.io/davinci/assets/images/deployment/2.1.1.png"
+  alt="初始化目录"
+  
+/></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="22-配置环境变量">
+        2.2 配置环境变量
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#22-配置环境变量" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 2.2 配置环境变量" aria-label="Anchor to: 2.2 配置环境变量" href="#22-%e9%85%8d%e7%bd%ae%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>将上述解压后的目录配置到环境变量 DAVINCI3_HOME</p>
+<pre tabindex="0"><code>export DAVINCI3_HOME=~/app/davinci/davinci-assembly_3.0.1-0.3.0-SNAPSHOT-dist
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="23-初始化数据库">
+        2.3 初始化数据库
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#23-初始化数据库" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 2.3 初始化数据库" aria-label="Anchor to: 2.3 初始化数据库" href="#23-%e5%88%9d%e5%a7%8b%e5%8c%96%e6%95%b0%e6%8d%ae%e5%ba%93">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>修改 bin 目录下 initdb.sh 中要的数据库信息为要初始化的数据库，如 davinci0.3</p>
+<pre tabindex="0"><code>mysql -P 3306 -h localhost -u root -proot davinci0.3 &lt; $DAVINCI3_HOME/bin/davinci.sql
+</code></pre><p>运行脚本初始化数据库（注：由于 Davinci 系统数据库中包含存储过程，请务必在创建数据库时赋予执行权限）</p>
+<pre tabindex="0"><code>sh bin/initdb.sh
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="24-初始化配置">
+        2.4 初始化配置
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#24-初始化配置" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 2.4 初始化配置" aria-label="Anchor to: 2.4 初始化配置" href="#24-%e5%88%9d%e5%a7%8b%e5%8c%96%e9%85%8d%e7%bd%ae">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>Davinci 的配置主要包括：server、datasource、mail、chrome、cache 等配置</p>
+<p>进入<code>config</code>目录，将<code>application.yml.example</code>重命名为<code>application.yml</code> 后开始配置</p>
+<pre tabindex="0"><code>cd config
+mv application.yml.example application.yml
+</code></pre><p><strong>注意：由于 Davinci 使用 ymal 作为应用配置文件格式，请务必确保每个配置项键后的冒号和值之间至少有一个空格</strong></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="25-datasource-配置-检查-applicationyml中的-urldriver-class-name-是否一致以及usernamepassword是否正确">
+        2.5 datasource 配置 （检查 <code>application.yml</code>中的 url，driver-class-name 是否一致，以及username，password是否正确）
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#25-datasource-配置-检查-applicationyml中的-urldriver-class-name-是否一致以及usernamepassword是否正确" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 2.5 datasource 配置 （检查 application.yml中的 url，driver-class-name 是否一致，以及username，password是否正确）" aria-label="Anchor to: 2.5 datasource 配置 （检查 application.yml中的 url，driver-class-name 是否一致，以及username，password是否正确）" href="#25-datasource-%e9%85%8d%e7%bd%ae-%e6%a3%80%e6%9f%a5-applicationyml%e4%b8%ad%e7%9a%84-urldriver-class-name-%e6%98%af%e5%90%a6%e4%b8%80%e8%87%b4%e4%bb%a5%e5%8f%8ausernamepassword%e6%98%af%e5%90%a6%e6%ad%a3%e7%a1%ae">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<p>这里的 datasource 配置指 Davinci 系统的数据源，配置如下：</p>
+<pre tabindex="0"><code>spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/davinci0.3?useUnicode=true&amp;characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull&amp;allowMultiQueries=true&amp;serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+</code></pre><p>将上一步初始化的数据库地址和驱动类配置到<code>url</code>与 <code>driver-class-name</code>中，url 与 driver-class-name 中的参数不要做任何修改，然后修改正确的数据库访问用户和密码即<code>username</code>和<code>password</code></p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="3-自定义数据源-需要将下列配置添加到-datasource_driveryml">
+        3 自定义数据源 （需要将下列配置添加到 datasource_driver.yml）
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#3-自定义数据源-需要将下列配置添加到-datasource_driveryml" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 3 自定义数据源 （需要将下列配置添加到 datasource_driver.yml）" aria-label="Anchor to: 3 自定义数据源 （需要将下列配置添加到 datasource_driver.yml）" href="#3-%e8%87%aa%e5%ae%9a%e4%b9%89%e6%95%b0%e6%8d%ae%e6%ba%90-%e9%9c%80%e8%a6%81%e5%b0%86%e4%b8%8b%e5%88%97%e9%85%8d%e7%bd%ae%e6%b7%bb%e5%8a%a0%e5%88%b0-datasource_driveryml">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="31-打开自定义数据源配置文件">
+        3.1 打开自定义数据源配置文件
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#31-打开自定义数据源配置文件" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 3.1 打开自定义数据源配置文件" aria-label="Anchor to: 3.1 打开自定义数据源配置文件" href="#31-%e6%89%93%e5%bc%80%e8%87%aa%e5%ae%9a%e4%b9%89%e6%95%b0%e6%8d%ae%e6%ba%90%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<pre tabindex="0"><code>  mv datasource_driver.yml.example datasource_driver.yml
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="32-如下配置你的数据源这里以-postgresql-为例">
+        3.2 如下配置你的数据源，这里以 postgresql 为例
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#32-如下配置你的数据源这里以-postgresql-为例" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 3.2 如下配置你的数据源，这里以 postgresql 为例" aria-label="Anchor to: 3.2 如下配置你的数据源，这里以 postgresql 为例" href="#32-%e5%a6%82%e4%b8%8b%e9%85%8d%e7%bd%ae%e4%bd%a0%e7%9a%84%e6%95%b0%e6%8d%ae%e6%ba%90%e8%bf%99%e9%87%8c%e4%bb%a5-postgresql-%e4%b8%ba%e4%be%8b">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div>
+<pre tabindex="0"><code>  postgresql:
+    name: postgresql
+    desc: postgresql
+    version:
+    driver: org.postgresql.Driver
+    keyword_prefix:
+    keyword_suffix:
+    alias_prefix: \&#34;
+    alias_suffix: \&#34;
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h2 id="4-新增数据源-需要先执行第三步">
+        4 新增数据源 （需要先执行第三步）
+        <a data-clipboard-text="https://henrikzhu.github.io:443/posts/Davinci/#4-新增数据源-需要先执行第三步" class="gdoc-page__anchor clip flex align-center" title="Anchor to: 4 新增数据源 （需要先执行第三步）" aria-label="Anchor to: 4 新增数据源 （需要先执行第三步）" href="#4-%e6%96%b0%e5%a2%9e%e6%95%b0%e6%8d%ae%e6%ba%90-%e9%9c%80%e8%a6%81%e5%85%88%e6%89%a7%e8%a1%8c%e7%ac%ac%e4%b8%89%e6%ad%a5">
+            <svg class="gdoc-icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div>
+<p>在数据源列表页，点击右上角“+”按钮弹出新增数据源表单 <img
+  src="https://edp963.github.io/davinci/assets/images/source/1.1.png"
+  alt="新增数据源1"
+  
+/> <img
+  src="https://edp963.github.io/davinci/assets/images/source/1.2.png"
+  alt="新增数据源2"
+  
+/></p>
+<p>用户名和密码为数据源连接账户及密码，连接 URL 请填写完整 JDBC 连接地址，通常格式为</p>
+<pre tabindex="0"><code>jdbc:&lt;数据源名称&gt;://&lt;数据源域名或IP&gt;:(&lt;端口&gt;)/&lt;数据源实例&gt;(?&lt;连接参数&gt;)
+</code></pre><p>其中端口和连接参数为可选项。部分数据源在写法上有少许差异，比如名称和域名/IP之间不需要 <code>//</code>、参数连接符使用 <code>;</code> 等等</p>
+<p>配置信息栏填写连接参数，以键值对的形式，可根据不同数据源情况自行填写</p>
+<p>在输入完上述内容之后，可以点击“点击测试”按钮检查数据源是否可以正常连接；测试成功并填写完毕之后，点击下方的保存按钮保存数据源配置</p>
+<p>列如：</p>
+<p>类型: <code>JDBC</code></p>
+<p>数据库: <code>postgres</code></p>
+<p>用户名: <code>username</code></p>
+<p>密码: <code>password</code></p>
+<p>连接url: <code>jdbc:postgres://hostname:5432/postgres</code></p>
+
+    </section>
+  </article>
+
+
+
+          <div class="gdoc-page__footer flex flex-wrap justify-between">
+            
+
+
+
+
+
+
+
+
+  
+  
+
+  
+    
+    
+
+    
+    
+      
+      
+      
+
+      
+        
+      
+      
+
+      
+
+      
+
+      
+    
+
+    
+    
+  
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </main>
+
+      <footer class="gdoc-footer">
+  <nav class="container flex">
+    <div>
+      <section class="flex flex-wrap align-center">
+        <span class="gdoc-footer__item gdoc-footer__item--row">
+          Built with <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> and <svg class="gdoc-icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg>
+
+        </span>
+        
+        
+      </section>
+      
+    </div>
+    
+      <div class="flex flex-25 justify-end">
+        <span class="gdoc-footer__item text-right">
+          <a class="gdoc-footer__link fake-link" href="#" aria-label="Back to top">
+            <svg class="gdoc-icon gdoc_keyboard_arrow_up">
+              <use xlink:href="#gdoc_keyboard_arrow_up"></use>
+            </svg>
+            <span class="hidden-mobile">Back to top</span>
+          </a>
+        </span>
+      </div>
+    
+  </nav>
+</footer>
+
+    </div>
+
+    
+
+  </body>
+</html>
